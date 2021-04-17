@@ -8,7 +8,7 @@ import pl.homebudget.user.Users;
 import java.util.List;
 import java.util.Optional;
 
-@Primary
+
 @Repository
 public class JpaUsersService implements UsersService{
 

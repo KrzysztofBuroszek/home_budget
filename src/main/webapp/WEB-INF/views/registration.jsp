@@ -15,7 +15,6 @@
 </head>
 <body>
 <h1>REJESTRACJA</h1>
-<%@ include file="logOut.jsp" %>
 
 <form:form method="post" modelAttribute="Users"  class="padding-small text-center" >
     <div class="form-group">
