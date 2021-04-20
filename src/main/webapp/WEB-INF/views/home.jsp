@@ -9,7 +9,7 @@
 <body>
 <h1>HOME</h1>
 
-<a href="<c:out value="/registration"/>">Rejestracja</a>
+<a href="<c:out value="/registration"/>">Rejestracja</a><br>
 <a href="<c:out value="/login"/>">Logowanie</a>
 
 </body>
