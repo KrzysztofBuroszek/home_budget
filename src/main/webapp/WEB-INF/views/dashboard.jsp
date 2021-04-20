@@ -14,6 +14,7 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
+<%@ include file="sidebar.jsp" %>
 STRONA UŻYTKOWNIKA
 
 
@@ -36,5 +37,6 @@ STRONA UŻYTKOWNIKA
 
 </form:form>
 
-</body>
-</html>
+
+<%@ include file="footer.jsp" %>
+

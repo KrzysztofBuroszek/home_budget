@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: krzysztofburoszek
@@ -6,31 +9,24 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<link href="<c:url value="/theme/css/sb-admin-2.css"/>" rel="stylesheet">
+<link href="<c:url value="/theme/css/sb-admin-2.min.css"/>" rel="stylesheet">
+
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
 </head>
-<body>
 
-<a class="btn btn-color rounded-0" href="/home">
-    <span>LOGOUT</span><br>
-</a>
-<li class="nav-item active">
-    <a href="/add" class="nav-link">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>DODAJ WYDATEK</span></a>
-</li>
-<li class="nav-item active">
-    <a href="/addIncomeMoney" class="nav-link">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>DODAJ PRZYCHÓD</span></a>
-</li>
-<li class="nav-item active">
-    <a href="/dashboard" class="nav-link">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>STRONA GŁÓWNA</span></a>
-</li>
+<body id="page-top">
+
+<h1>Budżet domowy</h1>
 
 
-</body>
-</html>

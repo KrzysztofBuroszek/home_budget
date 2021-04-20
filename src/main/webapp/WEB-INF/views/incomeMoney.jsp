@@ -11,7 +11,7 @@
 <head>
     <title>AddImcomeMoney</title>
 </head>
-<%@ include file="header.jsp" %>
+<%@ include file="sidebar.jsp" %>
 <body>
 <h1>DODAJ PRZYCHÓD</h1>
 <form:form method="POST" modelAttribute="Expenses"  class="padding-small text-center">

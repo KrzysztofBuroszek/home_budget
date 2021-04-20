@@ -5,14 +5,16 @@
 <html>
 <head>
     <title>Home</title>
-</head>
-<body>
-<h1>HOME</h1>
 
-<a href="<c:out value="/registration"/>">Rejestracja</a><br>
-<a href="<c:out value="/login"/>">Logowanie</a>
+    <h1>HOME</h1>
 
-</body>
-</html>
+    <%@ include file="header.jsp" %>
+
+
+    <a href="<c:out value="/registration"/>">Rejestracja</a><br>
+    <a href="<c:out value="/login"/>">Logowanie</a>
+
+    <%@ include file="footer.jsp" %>
+
 
 
