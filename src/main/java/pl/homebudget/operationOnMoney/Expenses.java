@@ -75,4 +75,12 @@ public class Expenses {
     public void setLocalDate(LocalDate localDate) {
         this.localDate = localDate;
     }
+
+    @Override
+    public String toString() {
+        return "Id:" + id +
+                " Wartość: " + expense +
+                " Opis: " + description  +
+                " Data utworzenia: " + localDate;
+    }
 }

@@ -4,6 +4,9 @@ import org.springframework.stereotype.Repository;
 import pl.homebudget.operationOnMoney.IncomeMoney;
 import pl.homebudget.repository.IncomeMoneyRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +14,7 @@ import java.util.Optional;
 public class JpaIncomeMoneyService implements IncomeMoneyService{
 
     private final IncomeMoneyRepository incomeMoneyRepository;
+    private EntityManager entityManager;
 
     public JpaIncomeMoneyService(IncomeMoneyRepository incomeMoneyRepository) {
         this.incomeMoneyRepository = incomeMoneyRepository;
@@ -18,9 +22,10 @@ public class JpaIncomeMoneyService implements IncomeMoneyService{
 
 
     @Override
-    public List<IncomeMoney> getExpenses() {
-        return null;
+    public List<IncomeMoney> getIncomeMoney() {
+        return incomeMoneyRepository.findAll();
     }
+
 
     @Override
     public Optional<IncomeMoney> get(Long id) {

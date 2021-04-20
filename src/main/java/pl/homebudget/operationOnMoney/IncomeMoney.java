@@ -34,6 +34,12 @@ public class IncomeMoney {
         this.localDate = localDate;
     }
 
+    @PrePersist
+    public void prePersist() {
+        localDate = LocalDate.now();
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -65,4 +71,14 @@ public class IncomeMoney {
     public void setLocalDate(LocalDate localDate) {
         this.localDate = localDate;
     }
+
+    @Override
+    public String toString() {
+        return
+                "Id:" + id +
+                ", Wartość:" + incomeMoney  +
+                ", Opis:" + description +
+                ", Data utworzenia:" + localDate;
+    }
 }
+

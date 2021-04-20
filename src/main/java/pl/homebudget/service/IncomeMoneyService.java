@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface IncomeMoneyService {
 
 
-    List<IncomeMoney> getExpenses();
+    List<IncomeMoney> getIncomeMoney();
 
     Optional<IncomeMoney> get(Long id);
 

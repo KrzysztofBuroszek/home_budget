@@ -26,7 +26,7 @@ public class JpaExpensesService implements ExpensesService{
 
     @Override
     public List<Expenses> getExpenses() {
-        return null;
+        return expensesRepository.findAll();
     }
 
     @Override

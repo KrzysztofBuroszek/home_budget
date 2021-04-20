@@ -11,7 +11,7 @@
 <head>
     <title>Add</title>
 </head>
-<%@ include file="logOut.jsp" %>
+<%@ include file="header.jsp" %>
 <%--<%@ include file="dashboard.jsp"%>--%>
 <body>
 <h1>DODAJ WYDATEK</h1>
