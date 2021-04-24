@@ -2,14 +2,11 @@ package pl.homebudget.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.homebudget.operationOnMoney.Expenses;
@@ -21,7 +18,6 @@ import pl.homebudget.user.Users;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.Optional;
 
 @Controller
 @Primary
@@ -83,7 +79,6 @@ public class AddingController {
         Users actual = new Users();
         actual.setId((Long) session.getAttribute("idUser"));
         incomeMoney.setUsersIdIM(actual);
-//        incomeMoney.set
         incomeMoneyService.add(incomeMoney);
         return "incomeMoney";
     }

@@ -8,15 +8,10 @@ import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.*;
 import pl.homebudget.service.UsersService;
 import pl.homebudget.user.Users;
-
 import javax.servlet.http.HttpSession;
-import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
-
 import java.util.stream.Collectors;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

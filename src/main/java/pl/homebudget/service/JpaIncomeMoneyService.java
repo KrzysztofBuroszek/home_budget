@@ -5,8 +5,6 @@ import pl.homebudget.operationOnMoney.IncomeMoney;
 import pl.homebudget.repository.IncomeMoneyRepository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 

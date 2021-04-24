@@ -26,13 +26,6 @@ public class AppInitializer extends
         return new String[]{"/"};
     }
 
-//    public void onStartup(ServletContext container) throws ServletException {
-//        FilterRegistration.Dynamic fr = container.addFilter("encodingFilter",
-//                new CharacterEncodingFilter());
-//        fr.setInitParameter("encoding", "UTF-8");
-//        fr.setInitParameter("forceEncoding", "true");
-//        fr.addMappingForUrlPatterns(null, true, "/*");
-//    }
 }
 
 

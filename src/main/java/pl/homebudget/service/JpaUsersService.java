@@ -1,10 +1,8 @@
 package pl.homebudget.service;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import pl.homebudget.repository.UsersRepository;
 import pl.homebudget.user.Users;
-
 import java.util.List;
 import java.util.Optional;
 

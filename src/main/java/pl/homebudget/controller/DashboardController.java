@@ -4,17 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import pl.homebudget.operationOnMoney.Expenses;
 import pl.homebudget.operationOnMoney.IncomeMoney;
 import pl.homebudget.service.ExpensesService;
 import pl.homebudget.service.IncomeMoneyService;
-
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -59,28 +56,4 @@ public class DashboardController {
     public String dashboardGetExpansesSum() {
         return null;
     }
-
-
-//    @GetMapping("/dashboard")
-//    public String dashboardGetIncomeMoneyById(@ModelAttribute("IncomeMoney") IncomeMoney incomeMoney, Model model, HttpSession session) {
-//
-//
-//        Long idUser = (Long) session.getAttribute("idUser");
-//        Optional<IncomeMoney> all = incomeMoneyService.get(idUser);
-//
-//        model.addAttribute("incomeMoney", all);
-//        logger.info(session.getAttribute("idUser") + " rerewerrre");
-//        model.addAttribute("idUser", session.getAttribute("idUser"));
-//        return "dashboard";
-//
-//
-//    }
-//    @ModelAttribute("expenses")
-//    public List<Expenses> dashboardGetExpensesById(HttpSession session) {
-//        Long idUser = (Long) session.getAttribute("idUser");
-//        List<Expenses> all = expensesService.get(idUser);
-//        logger.info(String.valueOf(all));
-//        logger.info((idUser) + " 111111111111111111");
-//        return all;
-//    }
 }

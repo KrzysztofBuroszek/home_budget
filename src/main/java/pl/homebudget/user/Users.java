@@ -10,13 +10,13 @@ import java.util.List;
 public class Users {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //sequence / auto
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany
     private List<Users>exceptionList = new ArrayList<>();
 
-//    @NotBlank
+
     @NotEmpty(message = "Proszę uzupełnić imię max 100 znaków NB")
     @Size(min = 1, max = 100, message = "Proszę uzupełnić imię max 100 znaków")
     private String name;
@@ -26,7 +26,6 @@ public class Users {
     private String nick;
 
     @Email
-//    @NotBlank
     private String mail;
 
     @NotEmpty
