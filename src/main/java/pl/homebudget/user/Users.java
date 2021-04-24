@@ -1,9 +1,7 @@
 package pl.homebudget.user;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "users")
@@ -13,15 +11,21 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //sequence / auto
     private Long id;
 
-    @Size(min = 1, max = 100, message = "Proszę uzupełnić imię")
+
+//    @NotBlank
+//    @NotEmpty(message = "Proszę uzupełnić imię max 100 znaków NB")
+    @Size(min = 1, max = 100, message = "Proszę uzupełnić imię max 100 znaków")
     private String name;
 
     @NotEmpty(message = "Proszę uzupełnić nick")
     @Size(min = 1, max = 100)
     private String nick;
 
+    @Email
+//    @NotBlank
     private String mail;
 
+    @NotEmpty
     private String password;
 
     public Users(){};

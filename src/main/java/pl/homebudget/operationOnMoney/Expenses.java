@@ -14,7 +14,7 @@ public class Expenses {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column(scale = 2)
+
     @NotEmpty(message = "Proszę uzupełnić kwotę")
     @Size(min = 1, max = 100000000)
     private String expense;

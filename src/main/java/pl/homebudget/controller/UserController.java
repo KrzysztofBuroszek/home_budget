@@ -4,13 +4,17 @@ package pl.homebudget.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.*;
 import pl.homebudget.service.UsersService;
 import pl.homebudget.user.Users;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
+import javax.validation.Validation;
 import java.awt.print.Book;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -25,10 +29,15 @@ public class UserController {
 
 
     private final UsersService usersService;
+    public final Validator validator;
 
-    public UserController(UsersService usersService) {
+    public UserController(UsersService usersService, Validator validator) {
         this.usersService = usersService;
+        this.validator = validator;
     }
+
+
+
 
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
@@ -49,13 +58,13 @@ public class UserController {
                 .collect(Collectors.toList());
 
         if (result.hasErrors()) {
-            logger.info(users.getNick() + " " + "error xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-            return "redirect: login";
+            logger.info(users.getNick() + users.getPassword() + " " + "error xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            return "login";
         } else if (!usersList.isEmpty()) {
             logger.info(users.getNick() + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            return "redirect:dashboard";
+            return "dashboard";
         }
-        return "redirect: home";
+        return "login";
     }
 
     @GetMapping("/registration")
