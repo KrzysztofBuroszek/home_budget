@@ -36,6 +36,7 @@ public class DashboardController {
 
         List<IncomeMoney> all = incomeMoneyService.getIncomeMoney();
         model.addAttribute("incomeMoney", all);
+        logger.info(session.getAttribute("idUser") + " dadadadadadadadadaaaa");
         model.addAttribute("idUser", session.getAttribute("idUser"));
         return "dashboard";
     }

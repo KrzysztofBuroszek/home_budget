@@ -37,15 +37,27 @@ public class UserController {
     }
 
 
+
+    public List<Users> getUsers(@Valid Users users) {
+        List<Users>usersList = usersService.getUsers().stream()
+                .filter(u -> u.getNick().equals(users.getNick()))
+                .collect(Collectors.toList());
+        return  usersList;
+    }
+
+
+
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String home() {
         return "home";
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session) {
+    public String logout(HttpSession session, Model model) {
         session.removeAttribute("idUser");
         session.invalidate();
+        model.addAttribute("idUser", 0);
         return "logOut";
     }
     @GetMapping("/login")
@@ -57,26 +69,22 @@ public class UserController {
     public String login(@Valid Users users, BindingResult result, HttpSession session, Model model) {
 
 
-        List<Users> usersList = usersService.getUsers().stream()
-                .filter(u -> u.getNick().equals(users.getNick()))
-                .collect(Collectors.toList());
+//        List<Users> usersList = usersService.getUsers().stream()
+//                .filter(u -> u.getNick().equals(users.getNick()))
+//                .collect(Collectors.toList());
 
 //        Optional<Users> idUser = usersList.stream().findFirst();
 
-        Users usersActual = usersList.get(0);
+
+        Users usersActual = getUsers(users).get(0);//usersList.get(0);
 
         if (result.hasErrors()) {
             logger.info(users.getNick() + users.getPassword() + " " + "error xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
             return "login";
-        } else if (!usersList.isEmpty()) {
+        } else if (!getUsers(users).isEmpty()) {
             logger.info(users.getNick() + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + usersActual.getId());
-
             session.setAttribute("idUser", usersActual.getId());
-            session.removeAttribute("idUser");
-            usersList.remove(0);
-//            usersActual.setId(0L);
-
-
+            model.addAttribute("idUser", session.getAttribute("idUser"));
             return "dashboard";
         }
         return "login";
@@ -94,6 +102,7 @@ public class UserController {
         List<Users> usersList = usersService.getUsers().stream()
                 .filter(u -> u.getNick().equals(user.getNick()))
                 .collect(Collectors.toList());
+
         logger.info(String.valueOf(usersList));
 
         if (bindingResult.hasErrors()) {
