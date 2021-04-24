@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,9 +16,12 @@ import pl.homebudget.operationOnMoney.Expenses;
 import pl.homebudget.operationOnMoney.IncomeMoney;
 import pl.homebudget.service.ExpensesService;
 import pl.homebudget.service.IncomeMoneyService;
+import pl.homebudget.user.Users;
 
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @Primary
@@ -42,7 +46,7 @@ public class AddingController {
 
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addExpenses(@Valid Expenses expense, BindingResult bindingResult) {
+    public String addExpenses(@Valid Expenses expense, BindingResult bindingResult, Users users, Model model, HttpSession session) {
 
         if (bindingResult.hasErrors()) {
             logger.error("result error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -50,6 +54,16 @@ public class AddingController {
             logger.info((expense.getExpense()));
             return "error";
         }
+
+        logger.info("ggghhghghghghghghghghghghghghghghhhghhg" + session.getAttribute("idUser"));
+
+
+        Users actual = new Users();
+        actual.setId((Long) session.getAttribute("idUser"));
+        logger.info(actual.getId() + "sssssssssssssssssssssssssssssssssssss");
+        logger.info(actual + "sssssssssssssssssssssssssssssssssssss");
+
+        expense.setUsersId(actual);
         expensesService.add(expense);
         return "additionsExpenses";
     }

@@ -21,11 +21,13 @@ STRONA UŻYTKOWNIKA
 
 
 
+<%--    <br>idUser: <form:textarea path="idUser" items="${idUser}"/><br>--%>
+    <span>|ID|:<c:out value="${idUser}"/></span>
 <%--    Przychody suma: <form:textarea path="incomeMoney" items="${incomeMoney}"/><br>--%>
 <%--    Wydatki suma: <form:select path="expenses" items="${expenses}"/><br>--%>
 
 
-    Przychody lista: <c:forEach items="${incomeMoney}" var="incomeMoney">
+   Przychody lista: <c:forEach items="${incomeMoney}" var="incomeMoney"><br>
         <p>${incomeMoney}</p>
     </c:forEach>
 

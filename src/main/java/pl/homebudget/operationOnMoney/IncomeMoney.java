@@ -1,5 +1,7 @@
 package pl.homebudget.operationOnMoney;
 
+import pl.homebudget.user.Users;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -12,6 +14,10 @@ public class IncomeMoney {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "users_id")
+    private Users users;
 
 
     @NotEmpty(message = "Proszę uzupełnić kwotę")

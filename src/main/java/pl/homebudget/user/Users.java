@@ -2,6 +2,8 @@ package pl.homebudget.user;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -11,6 +13,8 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //sequence / auto
     private Long id;
 
+    @OneToMany
+    private List<Users>exceptionList = new ArrayList<>();
 
 //    @NotBlank
 //    @NotEmpty(message = "Proszę uzupełnić imię max 100 znaków NB")
@@ -37,6 +41,9 @@ public class Users {
         this.nick = nick;
         this.mail = mail;
         this.password = password;
+    }
+
+    public Users(Object users) {
     }
 
     public Long getId() {

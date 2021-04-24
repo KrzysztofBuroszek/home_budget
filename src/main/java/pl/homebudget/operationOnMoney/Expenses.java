@@ -1,5 +1,7 @@
 package pl.homebudget.operationOnMoney;
 
+import pl.homebudget.user.Users;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -14,7 +16,6 @@ public class Expenses {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @NotEmpty(message = "Proszę uzupełnić kwotę")
     @Size(min = 1, max = 100000000)
     private String expense;
@@ -22,26 +23,29 @@ public class Expenses {
     @Size(max = 150)
     private String description;
 
-
     @Column(name = "created_on_expence")
     private LocalDate localDate;
 
+    @ManyToOne
+    @JoinColumn(name = "users_id")
+    private Users usersId;
+
+
+    public Users getUsersId() {
+        return usersId;
+    }
+
+    public void setUsersId(Users usersId) {
+        this.usersId = usersId;
+    }
 
     public Expenses() {
     }
 
 
-    public Expenses(Long id, @NotEmpty(message = "Proszę uzupełnić kwotę") @Size(max = 100000000) String expense, @Size(max = 150) String description, LocalDate localDate) {
-        this.id = id;
-        this.expense = expense;
-        this.description = description;
-        this.localDate = localDate;
-    }
-
     @PrePersist
     public void prePersist() {
         localDate = LocalDate.now();
-
     }
 
     public Long getId() {
@@ -83,4 +87,5 @@ public class Expenses {
                 " Opis: " + description  +
                 " Data utworzenia: " + localDate;
     }
+
 }

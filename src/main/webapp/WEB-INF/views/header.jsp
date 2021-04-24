@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<a class="btn btn-color rounded-0" href="/home">
+<a class="btn btn-color rounded-0" href="/logout">
     <span>LOGOUT</span><br>
 </a>
 <li class="nav-item active">

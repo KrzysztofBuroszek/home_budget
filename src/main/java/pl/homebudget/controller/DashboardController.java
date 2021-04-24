@@ -11,6 +11,7 @@ import pl.homebudget.operationOnMoney.IncomeMoney;
 import pl.homebudget.service.ExpensesService;
 import pl.homebudget.service.IncomeMoneyService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -29,22 +30,13 @@ public class DashboardController {
     }
 
 
-//    @GetMapping("/dashboard")
-//    public String dashboard(Model model){
-//        List<IncomeMoney> all = incomeMoneyService.getIncomeMoney();
-//        List<Expenses> allExpenses = expensesService.getExpenses();
-//
-//        logger.info((all) + "XxxxxXXxxXXXxxxxxxXXXxxxxXXXxxXXX");
-//        logger.info((allExpenses) + "yyyyyyyyyyyyyyyyyyyyyyyyyyyy");
-//        model.addAttribute("incomeMoney", all);
-//        model.addAttribute("expenses", allExpenses);
-//        return "dashboard";
-//    }
-
     @GetMapping("/dashboard")
-    public String dashboardGetIncomeMoney(@ModelAttribute("IncomeMoney") IncomeMoney incomeMoney, Model model) {
+    public String dashboardGetIncomeMoney(@ModelAttribute("IncomeMoney") IncomeMoney incomeMoney, Model model, HttpSession session) {
+
+
         List<IncomeMoney> all = incomeMoneyService.getIncomeMoney();
         model.addAttribute("incomeMoney", all);
+        model.addAttribute("idUser", session.getAttribute("idUser"));
         return "dashboard";
     }
 
