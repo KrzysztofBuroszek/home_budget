@@ -40,8 +40,7 @@ public class Expenses {
         this.usersId = usersId;
     }
 
-    public Expenses() {
-    }
+    public Expenses() {}
 
 
     @PrePersist
@@ -86,7 +85,8 @@ public class Expenses {
         return "Id:" + id +
                 " Wartość: " + expense +
                 " Opis: " + description  +
-                " Data utworzenia: " + localDate;
+                " Data utworzenia: " + localDate +
+                "User ID:" + usersId;
     }
 
 }

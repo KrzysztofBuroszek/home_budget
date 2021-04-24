@@ -31,13 +31,28 @@ public class IncomeMoney {
     @Column(name = "created_on_incomeMoney")
     private LocalDate localDate;
 
-    public IncomeMoney() {}
+
+    @ManyToOne
+    @JoinColumn(name = "users_id_IM")
+    private Users usersIdIM;
+
+
+    public IncomeMoney() {
+    }
 
     public IncomeMoney(Long id, @NotEmpty(message = "Proszę uzupełnić kwotę") @Size(min = 1, max = 100000000) String incomeMoney, @Size(max = 150) String description, LocalDate localDate) {
         this.id = id;
         this.incomeMoney = incomeMoney;
         this.description = description;
         this.localDate = localDate;
+    }
+
+    public Users getUsersIdIM() {
+        return usersIdIM;
+    }
+
+    public void setUsersIdIM(Users usersIdIM) {
+        this.usersIdIM = usersIdIM;
     }
 
     @PrePersist
@@ -82,9 +97,10 @@ public class IncomeMoney {
     public String toString() {
         return
                 "Id:" + id +
-                ", Wartość:" + incomeMoney  +
-                ", Opis:" + description +
-                ", Data utworzenia:" + localDate;
+                        ", Wartość:" + incomeMoney +
+                        ", Opis:" + description +
+                        ", Data utworzenia:" + localDate +
+                        "User ID:" + usersIdIM;
     }
 }
 

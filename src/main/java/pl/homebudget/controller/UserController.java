@@ -77,9 +77,11 @@ public class UserController {
         } else if (!getUsers(users).isEmpty()) {
             Users usersActual = getUsers(users).get(0);
             logger.info(users.getNick() + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + usersActual.getId());
+            session.setMaxInactiveInterval(1000);
             session.setAttribute("idUser", usersActual.getId());
+            session.setAttribute("nick", usersActual.getNick());
             model.addAttribute("idUser", session.getAttribute("idUser"));
-            return "dashboard";
+            return "/dashboard";
         }
         return "home";
     }

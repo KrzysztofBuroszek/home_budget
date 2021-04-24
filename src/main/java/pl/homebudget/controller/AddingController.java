@@ -55,13 +55,10 @@ public class AddingController {
             return "error";
         }
 
-        logger.info("ggghhghghghghghghghghghghghghghghhhghhg" + session.getAttribute("idUser"));
-
 
         Users actual = new Users();
         actual.setId((Long) session.getAttribute("idUser"));
         logger.info(actual.getId() + "sssssssssssssssssssssssssssssssssssss");
-        logger.info(actual + "sssssssssssssssssssssssssssssssssssss");
 
         expense.setUsersId(actual);
         expensesService.add(expense);
@@ -75,7 +72,7 @@ public class AddingController {
 
 
     @RequestMapping(value = "/addIncomeMoney", method = RequestMethod.POST)
-    public String addIncomeMoney(@Valid IncomeMoney incomeMoney, BindingResult bindingResult) {
+    public String addIncomeMoney(@Valid IncomeMoney incomeMoney, BindingResult bindingResult, HttpSession session) {
 
         if (bindingResult.hasErrors()) {
             logger.error("result error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -83,6 +80,10 @@ public class AddingController {
             logger.info((incomeMoney.getIncomeMoney()));
             return "error";
         }
+        Users actual = new Users();
+        actual.setId((Long) session.getAttribute("idUser"));
+        incomeMoney.setUsersIdIM(actual);
+//        incomeMoney.set
         incomeMoneyService.add(incomeMoney);
         return "incomeMoney";
     }

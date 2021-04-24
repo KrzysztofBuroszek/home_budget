@@ -14,6 +14,8 @@ import pl.homebudget.service.IncomeMoneyService;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class DashboardController {
@@ -34,26 +36,51 @@ public class DashboardController {
     public String dashboardGetIncomeMoney(@ModelAttribute("IncomeMoney") IncomeMoney incomeMoney, Model model, HttpSession session) {
 
 
-        List<IncomeMoney> all = incomeMoneyService.getIncomeMoney();
+        List<IncomeMoney> all = incomeMoneyService.getIncomeMoney().stream()
+                .filter(u -> u.getUsersIdIM().getId().equals(session.getAttribute("idUser")))
+                .collect(Collectors.toList());
         model.addAttribute("incomeMoney", all);
         logger.info(session.getAttribute("idUser") + " dadadadadadadadadaaaa");
         model.addAttribute("idUser", session.getAttribute("idUser"));
+        model.addAttribute("nick", session.getAttribute("nick"));
         return "dashboard";
     }
 
     @ModelAttribute("expenses")
-    public List<Expenses> dashboardGetExpenses() {
-         List<Expenses> all = expensesService.getExpenses();
+    public List<Expenses> dashboardGetExpenses(HttpSession session) {
+        List<Expenses> all = expensesService.getExpenses().stream()
+                .filter(u -> u.getUsersId().getId().equals(session.getAttribute("idUser")))
+                .collect(Collectors.toList());
+        logger.info(all + " dfbfbsdknfsakcdoiasjfduakscbasc");
         return all;
     }
 
     @ModelAttribute("expensesSum")
-    public String dashboardGetExpansesSum(){
+    public String dashboardGetExpansesSum() {
         return null;
     }
 
 
-
-
-
+//    @GetMapping("/dashboard")
+//    public String dashboardGetIncomeMoneyById(@ModelAttribute("IncomeMoney") IncomeMoney incomeMoney, Model model, HttpSession session) {
+//
+//
+//        Long idUser = (Long) session.getAttribute("idUser");
+//        Optional<IncomeMoney> all = incomeMoneyService.get(idUser);
+//
+//        model.addAttribute("incomeMoney", all);
+//        logger.info(session.getAttribute("idUser") + " rerewerrre");
+//        model.addAttribute("idUser", session.getAttribute("idUser"));
+//        return "dashboard";
+//
+//
+//    }
+//    @ModelAttribute("expenses")
+//    public List<Expenses> dashboardGetExpensesById(HttpSession session) {
+//        Long idUser = (Long) session.getAttribute("idUser");
+//        List<Expenses> all = expensesService.get(idUser);
+//        logger.info(String.valueOf(all));
+//        logger.info((idUser) + " 111111111111111111");
+//        return all;
+//    }
 }

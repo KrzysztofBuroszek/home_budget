@@ -1,12 +1,11 @@
 package pl.homebudget.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.homebudget.operationOnMoney.Expenses;
 import pl.homebudget.repository.ExpensesRepository;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class JpaExpensesService implements ExpensesService{
@@ -30,8 +29,8 @@ public class JpaExpensesService implements ExpensesService{
     }
 
     @Override
-    public Optional<Expenses> get(Long id) {
-        return Optional.empty();
+    public List<Expenses> get(Long id) {
+        return expensesRepository.findAllById(Collections.singleton(id));
     }
 
 
