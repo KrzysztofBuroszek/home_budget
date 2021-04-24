@@ -1,5 +1,7 @@
 package pl.homebudget.operationOnMoney;
+
 import pl.homebudget.user.Users;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -93,12 +95,9 @@ public class IncomeMoney {
 
     @Override
     public String toString() {
-        return
-                "Id:" + id +
-                        ", Wartość:" + incomeMoney +
-                        ", Opis:" + description +
-                        ", Data utworzenia:" + localDate +
-                        "User ID:" + usersIdIM;
+        return ", Wartość:" + incomeMoney + " " +
+                ", Opis:" + description + " " +
+                ", Data utworzenia:" + localDate;
     }
 }
 

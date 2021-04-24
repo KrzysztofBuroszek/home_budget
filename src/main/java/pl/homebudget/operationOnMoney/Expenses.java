@@ -80,11 +80,10 @@ public class Expenses {
 
     @Override
     public String toString() {
-        return "Id:" + id +
-                " Wartość: " + expense +
-                " Opis: " + description  +
+        return " Wartość: " + expense + " " +
+                " Opis: " + description  + " " +
                 " Data utworzenia: " + localDate +
-                "User ID:" + usersId;
+                "     " + usersId.getNick();
     }
 
 }

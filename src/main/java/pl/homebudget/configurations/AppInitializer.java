@@ -1,12 +1,8 @@
 package pl.homebudget.configurations;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.FilterRegistration;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+
 
 
 public class AppInitializer extends
