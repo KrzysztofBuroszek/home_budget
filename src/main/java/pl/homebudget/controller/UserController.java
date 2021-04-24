@@ -12,12 +12,9 @@ import pl.homebudget.user.Users;
 import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
-import javax.validation.Validation;
-import java.awt.print.Book;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import java.util.function.Supplier;
+
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -39,10 +36,16 @@ public class UserController {
 
 
     public List<Users> getUsers(@Valid Users users) {
-        List<Users>usersList = usersService.getUsers().stream()
-                .filter(u -> u.getNick().equals(users.getNick()))
-                .collect(Collectors.toList());
-        return  usersList;
+        try {
+            List<Users>usersList = usersService.getUsers().stream()
+                    .filter(u -> u.getNick().equals(users.getNick()))
+                    .filter(p -> p.getPassword().equals((users.getPassword())))
+                    .collect(Collectors.toList());
+            return  usersList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
@@ -66,28 +69,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@Valid Users users, BindingResult result, HttpSession session, Model model) {
-
-
-//        List<Users> usersList = usersService.getUsers().stream()
-//                .filter(u -> u.getNick().equals(users.getNick()))
-//                .collect(Collectors.toList());
-
-//        Optional<Users> idUser = usersList.stream().findFirst();
-
-
-        Users usersActual = getUsers(users).get(0);//usersList.get(0);
+    public String login(Users users, BindingResult result, HttpSession session, Model model) {
 
         if (result.hasErrors()) {
-            logger.info(users.getNick() + users.getPassword() + " " + "error xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info(users + users.getNick() + " " + users.getPassword() + " " + "error xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
             return "login";
         } else if (!getUsers(users).isEmpty()) {
+            Users usersActual = getUsers(users).get(0);
             logger.info(users.getNick() + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + usersActual.getId());
             session.setAttribute("idUser", usersActual.getId());
             model.addAttribute("idUser", session.getAttribute("idUser"));
             return "dashboard";
         }
-        return "login";
+        return "home";
     }
 
     @GetMapping("/registration")
@@ -98,6 +92,7 @@ public class UserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@Valid Users user, BindingResult bindingResult) {
+
 
         List<Users> usersList = usersService.getUsers().stream()
                 .filter(u -> u.getNick().equals(user.getNick()))

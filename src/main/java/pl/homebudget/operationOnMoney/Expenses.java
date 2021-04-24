@@ -3,6 +3,7 @@ package pl.homebudget.operationOnMoney;
 import pl.homebudget.user.Users;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;

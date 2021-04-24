@@ -17,7 +17,7 @@ public class Users {
     private List<Users>exceptionList = new ArrayList<>();
 
 //    @NotBlank
-//    @NotEmpty(message = "Proszę uzupełnić imię max 100 znaków NB")
+    @NotEmpty(message = "Proszę uzupełnić imię max 100 znaków NB")
     @Size(min = 1, max = 100, message = "Proszę uzupełnić imię max 100 znaków")
     private String name;
 
